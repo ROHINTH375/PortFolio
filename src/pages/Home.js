@@ -126,15 +126,14 @@ export default function HomePage() {
         <footer className="p-5 text-center bg-gray-900 dark:bg-gray-800">
           <p>&copy; 2025 Rohinth S</p>
           <div className="flex justify-center space-x-4 mt-2">
-            <a href="#" className="text-xl">
-              <FaGithub />
-            </a>
-            <a href="#" className="text-xl">
-              <FaLinkedin />
-            </a>
-            <a href="#" className="text-xl">
-              <FaEnvelope />
-            </a>
+            <a href="#" className="text-blue-400 hover:underline"><FaGithub /></a>
+            <a href="#" className="text-blue-400 hover:underline"><FaLinkedin /></a>
+            <a href="#" className="text-blue-400 hover:underline"><FaEnvelope /></a>
+          </div>
+          <div className="flex justify-center space-x-4 mt-2">
+            
+            
+           
           </div>
         </footer>
       </div>
