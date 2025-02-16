@@ -1,35 +1,35 @@
 import React, { useState } from "react";
-import axios from "axios"; // Import axios
+// import axios from "axios"; // Import axios
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaWhatsapp } from "react-icons/fa";
-import { API_BASE_URL } from "../config";
+// import { API_BASE_URL } from "../config";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState(""); // For showing success/error messages
+  // const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status] = useState(""); // For showing success/error messages
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus(""); // Reset status before submission
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setStatus(""); // Reset status before submission
 
-    try {
-      const res = await axios.post(`${API_BASE_URL}/api/contact`, formData, {
-        headers: { "Content-Type": "application/json" },
-      });
+  //   try {
+  //     const res = await axios.post(`${API_BASE_URL}/api/contact`, formData, {
+  //       headers: { "Content-Type": "application/json" },
+  //     });
 
-      if (res.status === 201) {
-        setStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" }); // Clear form
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      setStatus("Failed to send message. Try again later.");
-    }
-  };
+  //     if (res.status === 201) {
+  //       setStatus("Message sent successfully!");
+  //       setFormData({ name: "", email: "", message: "" }); // Clear form
+  //     }
+  //   } catch (error) {
+  //     console.error("Error sending message:", error);
+  //     setStatus("Failed to send message. Try again later.");
+  //   }
+  // };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-6">
@@ -100,6 +100,7 @@ const Contact = () => {
         <a href="https://github.com/Rohinth375" className="text-gray-400 text-2xl hover:text-gray-500" target="_blank" rel="noopener noreferrer">
           <FaGithub />
         </a>
+        
       </div>
     </div>
   );
