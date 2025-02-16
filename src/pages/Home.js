@@ -37,13 +37,13 @@ export default function HomePage() {
           <p className="text-lg mt-2">A Passionate Full-Stack Developer 🚀</p>
           <div className="mt-5 flex justify-center space-x-4">
             <a
-              href="projects"
+              href="#projects"
               className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
             >
               View My Work
             </a>
             <a
-              href="contact"
+              href="#contact"
               className="px-4 py-2 bg-gray-700 text-white rounded-lg shadow hover:bg-gray-800"
             >
               Contact Me
