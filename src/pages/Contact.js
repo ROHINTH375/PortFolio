@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios"; // Import axios
 import { motion } from "framer-motion";
 import { FaLinkedin, FaTwitter, FaGithub, FaEnvelope, FaPhone, FaWhatsapp } from "react-icons/fa";
+import { API_BASE_URL } from "../config";
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -16,7 +17,7 @@ const Contact = () => {
     setStatus(""); // Reset status before submission
 
     try {
-      const res = await axios.post("http://localhost:5000/api/contact", formData, {
+      const res = await axios.post(`${API_BASE_URL}/api/contact`, formData, {
         headers: { "Content-Type": "application/json" },
       });
 
