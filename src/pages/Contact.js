@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import axios
 import { motion } from "framer-motion";
-import { FaLinkedin, FaTwitter, FaGithub, FaEnvelope, FaPhone, FaWhatsapp } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaWhatsapp } from "react-icons/fa";
 import { API_BASE_URL } from "../config";
 
 const Contact = () => {
