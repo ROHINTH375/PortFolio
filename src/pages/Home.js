@@ -121,7 +121,6 @@
 //             </p>
 //           </div>
 //         </section>
-        
 
 //         {/* Footer */}
 //         <footer className="p-5 text-center bg-gray-900 dark:bg-gray-800">
@@ -175,7 +174,8 @@ import {
   FaPhone,
   FaWhatsapp,
 } from "react-icons/fa";
-
+import ChatArea from "./ChatArea";
+import { io } from "socket.io-client";
 // Projects Data
 // const projects = [
 //   {
@@ -216,7 +216,8 @@ const projects = [
   {
     id: 1,
     title: "College Placement Management System",
-    description: "A MERN stack project for managing student placements, applications, and interviews.",
+    description:
+      "A MERN stack project for managing student placements, applications, and interviews.",
     techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"],
     details: [
       "Developed a full-stack web app for managing student placements.",
@@ -229,7 +230,8 @@ const projects = [
   {
     id: 2,
     title: "Movie Search App",
-    description: "A React application that integrates with the OMDB API for movie searches.",
+    description:
+      "A React application that integrates with the OMDB API for movie searches.",
     techStack: ["React.js", "OMDB API", "TailwindCSS"],
     details: [
       "Search for movies by title and view detailed information.",
@@ -242,7 +244,8 @@ const projects = [
   {
     id: 3,
     title: "E-Commerce Platform",
-    description: "A full-stack MERN-based e-commerce platform with admin authentication.",
+    description:
+      "A full-stack MERN-based e-commerce platform with admin authentication.",
     techStack: ["React.js", "Node.js", "MongoDB", "Express.js", "JWT"],
     details: [
       "Developed a scalable e-commerce store with cart functionality.",
@@ -255,7 +258,8 @@ const projects = [
   {
     id: 4,
     title: "Landing Page Design",
-    description: "A responsive landing page design using HTML, CSS, and JavaScript.",
+    description:
+      "A responsive landing page design using HTML, CSS, and JavaScript.",
     techStack: ["HTML", "CSS", "JavaScript"],
     details: [
       "Designed a modern, fully responsive landing page.",
@@ -267,6 +271,18 @@ const projects = [
   },
 ];
 
+const socket = io("https://portfolio-backend1-rcsm.onrender.com", {
+  transports: ["websocket", "polling"],
+  withCredentials: true
+});
+
+socket.on("connect", () => {
+  console.log("Connected to server:", socket.id);
+});
+
+socket.on("disconnect", () => {
+  console.log("Disconnected from server");
+});
 
 export default function HomePage() {
   const [darkMode, setDarkMode] = useState(false);
@@ -278,16 +294,27 @@ export default function HomePage() {
   return (
     <div className={darkMode ? "dark" : ""}>
       <div className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-blue-700 text-white transition-all">
-        
         {/* Navbar */}
         <nav className="fixed top-0 left-0 w-full bg-gray-900 p-5 flex justify-between items-center shadow-md z-50">
           <h1 className="text-xl font-bold">Rohinth's Portfolio</h1>
           <div className="space-x-6">
-            <button onClick={() => handleScrollTo("projects")} className="hover:text-blue-400">
+            <button
+              onClick={() => handleScrollTo("projects")}
+              className="hover:text-blue-400"
+            >
               Projects
             </button>
-            <button onClick={() => handleScrollTo("contact")} className="hover:text-blue-400">
+            <button
+              onClick={() => handleScrollTo("contact")}
+              className="hover:text-blue-400"
+            >
               Contact
+            </button>
+            <button
+              onClick={() => handleScrollTo("chat")}
+              className="hover:text-blue-400"
+            >
+              Chat
             </button>
             <button onClick={() => setDarkMode(!darkMode)} className="text-2xl">
               {darkMode ? <FaSun /> : <FaMoon />}
@@ -342,8 +369,8 @@ export default function HomePage() {
             ))}
           </div>
         </section> */}
-                {/* Projects Section */}
-                <section id="projects" className="p-10">
+        {/* Projects Section */}
+        <section id="projects" className="p-10">
           <h2 className="text-3xl font-bold text-center mb-6">My Projects</h2>
           <div className="flex flex-col space-y-10">
             {projects.map((project, index) => (
@@ -352,7 +379,10 @@ export default function HomePage() {
                 className="relative p-6 bg-gray-800 rounded-lg shadow-lg cursor-pointer overflow-hidden"
                 initial={{ opacity: 0, y: 100, rotate: -5 }}
                 whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-                whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(0, 123, 255, 0.5)" }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0px 0px 20px rgba(0, 123, 255, 0.5)",
+                }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
@@ -364,15 +394,24 @@ export default function HomePage() {
                   transition={{ duration: 0.3 }}
                 />
 
-                <h3 className="text-2xl font-semibold relative z-10">{project.title}</h3>
-                <p className="text-gray-300 mt-2 relative z-10">{project.description}</p>
+                <h3 className="text-2xl font-semibold relative z-10">
+                  {project.title}
+                </h3>
+                <p className="text-gray-300 mt-2 relative z-10">
+                  {project.description}
+                </p>
 
                 {/* Tech Stack */}
                 <div className="mt-2 relative z-10">
-                  <h4 className="text-lg font-semibold text-blue-400">Tech Stack:</h4>
+                  <h4 className="text-lg font-semibold text-blue-400">
+                    Tech Stack:
+                  </h4>
                   <div className="flex flex-wrap gap-2 mt-1">
                     {project.techStack.map((tech, i) => (
-                      <span key={i} className="bg-gray-700 px-2 py-1 rounded text-white text-sm">
+                      <span
+                        key={i}
+                        className="bg-gray-700 px-2 py-1 rounded text-white text-sm"
+                      >
                         {tech}
                       </span>
                     ))}
@@ -388,10 +427,20 @@ export default function HomePage() {
 
                 {/* Links */}
                 <div className="mt-4 relative z-10">
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline mr-3">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:underline mr-3"
+                  >
                     Live Demo
                   </a>
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:underline"
+                  >
                     GitHub
                   </a>
                 </div>
@@ -400,28 +449,50 @@ export default function HomePage() {
           </div>
         </section>
 
-
-
         {/* Contact Section */}
         <section id="contact" className="p-10 bg-gray-900">
           <h2 className="text-3xl font-bold text-center">Contact Me</h2>
           <div className="mt-6 flex space-x-4 justify-center">
-            <a href="mailto:rohinth1904@gmail.com" className="text-blue-400 text-2xl hover:text-blue-500">
+            <a
+              href="mailto:rohinth1904@gmail.com"
+              className="text-blue-400 text-2xl hover:text-blue-500"
+            >
               <FaEnvelope />
             </a>
-            <a href="tel:+9524707476" className="text-green-400 text-2xl hover:text-green-500">
+            <a
+              href="tel:+9524707476"
+              className="text-green-400 text-2xl hover:text-green-500"
+            >
               <FaPhone />
             </a>
-            <a href="https://wa.me/919524707476" className="text-green-400 text-2xl hover:text-green-500" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://wa.me/919524707476"
+              className="text-green-400 text-2xl hover:text-green-500"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaWhatsapp />
             </a>
-            <a href="https://www.linkedin.com/in/srohinth1904" className="text-blue-500 text-2xl hover:text-blue-600" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com/in/srohinth1904"
+              className="text-blue-500 text-2xl hover:text-blue-600"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaLinkedin />
             </a>
-            <a href="https://github.com/Rohinth375" className="text-gray-400 text-2xl hover:text-gray-500" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/Rohinth375"
+              className="text-gray-400 text-2xl hover:text-gray-500"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaGithub />
             </a>
           </div>
+        </section>
+        <section id="chat" className="p-10">
+          <ChatArea />
         </section>
 
         {/* Footer */}
