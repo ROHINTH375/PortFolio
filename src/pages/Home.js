@@ -192,10 +192,10 @@ export default function HomePage() {
             </div>
             <div>
               <h3 className="text-xl font-semibold">🔹 Software Development Intern - Bluestock Fintech</h3>
-              <li> Worked on front-end development using React.js and TailwindCSS.</li>
-            <li> Optimized UI/UX components for better responsiveness and accessibility.</li>
-            <li> Integrated third-party APIs to enhance application functionality.</li>
-            <li> Assisted in debugging and improving website performance.</li>
+              <li> Contributed to the development of financial web applications using React.js and TailwindCSS.</li>
+            <li> Implemented real-time data visualization for financial metrics and analytics.</li>
+            <li> Integrated secure API connections to fetch stock market and financial data.</li>
+            <li> Built and optimized UI components using React.js & TailwindCSS.</li>
               <p className="text-gray-300">Optimized UI/UX, integrated third-party APIs, and improved website performance.</p>
             </div>
           </div>
